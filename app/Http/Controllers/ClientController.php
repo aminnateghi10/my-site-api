@@ -103,7 +103,8 @@ class ClientController extends Controller
      */
     public function delete(int $client): JsonResponse
     {
-        $status = Client::find($client);
+        $client = Client::find($client);
+        $status = $client->delete();
 
         return response()->json([
             'status' => $status

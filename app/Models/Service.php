@@ -15,4 +15,8 @@ class Service extends Model
      * @var array
      */
     protected $guarded = ['id'];
+
+    protected $casts = [
+        'meta' => 'array'
+    ];
 }

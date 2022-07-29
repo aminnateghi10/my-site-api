@@ -40,7 +40,7 @@ $router->group(['prefix' => 'api/v1/'], function ($router) {
         $router->delete('information/{information}', ['uses' => 'InformationController@delete']);
 
         // clients routes
-        $router->post('clients', ['uses' => 'ClientController@store ']);
+        $router->post('clients', ['uses' => 'ClientController@store']);
         $router->put('clients/{client}', ['uses' => 'ClientController@update']);
         $router->delete('clients/{client}', ['uses' => 'ClientController@delete']);
 

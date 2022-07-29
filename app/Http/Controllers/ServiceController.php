@@ -100,7 +100,9 @@ class ServiceController extends Controller
      */
     public function delete(int $service): JsonResponse
     {
-        $status = Service::find($service);
+        $service = Service::find($service);
+
+        $status = $service->delete();
 
         return response()->json([
             'status' => $status

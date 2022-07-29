@@ -15,4 +15,8 @@ class Experience extends Model
      * @var array
      */
     protected $guarded = ['id'];
+
+    protected $casts = [
+        'meta' => 'array'
+    ];
 }
