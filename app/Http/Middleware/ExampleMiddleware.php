@@ -15,7 +15,7 @@ class ExampleMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $headers = [
+         $headers = [
             'Access-Control-Allow-Origin'      => '*',
             'Access-Control-Allow-Methods'     => 'POST, GET, OPTIONS, PUT, DELETE',
             'Access-Control-Allow-Credentials' => 'true',
@@ -29,7 +29,6 @@ class ExampleMiddleware
         }
 
         $response = $next($request);
-        
         foreach($headers as $key => $value)
         {
             $response->header($key, $value);
