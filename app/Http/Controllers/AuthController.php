@@ -21,7 +21,7 @@ class AuthController extends Controller
      * @throws ValidationException
      * @throws Exception
      */
-    public function login(Request $request): JsonResponse
+    public function login(Request $request)
     {
         $this->validate($request, [
             'email' => 'required',
