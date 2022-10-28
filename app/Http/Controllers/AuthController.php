@@ -8,6 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpFoundation\Cookie;
 
 class AuthController extends Controller
 {
@@ -29,8 +30,8 @@ class AuthController extends Controller
 
         $user = User::where('email', $request->input('email'))->first();
 
-        if ($user === null){
-            return response()->json(['authenticate' => false] , 401);
+        if ($user === null) {
+            return response()->json(['authenticate' => false], 401);
         }
 
         if (Hash::check($request->input('password'), $user->password)) {
@@ -38,7 +39,8 @@ class AuthController extends Controller
 
             User::where('email', $request->input('email'))->update(['api_token' => $apikey]);
 
-            return response()->json(['status' => 'success', 'token' => $apikey]);
+            return response()->json(['status' => 'success', 'token' => $apikey])
+                ->withCookie(Cookie::create('user_token', $apikey));
         } else {
             return response()->json(['status' => 'fail'], 401);
         }

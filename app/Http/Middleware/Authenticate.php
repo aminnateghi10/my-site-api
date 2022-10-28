@@ -6,6 +6,7 @@ use App\Models\User;
 use Closure;
 use Illuminate\Contracts\Auth\Factory as Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class Authenticate
 {
@@ -37,6 +38,10 @@ class Authenticate
      */
     public function handle($request, Closure $next, $guard = null)
     {
+        if ($request->cookies->has('user_token') && User::where('api_token', $request->cookies->get('user_token'))->exists()) {
+            return $next($request);
+        }
+
         if ($this->auth->guard($guard)->user() instanceof User) {
             return $next($request);
         }
