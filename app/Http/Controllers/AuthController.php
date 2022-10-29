@@ -46,18 +46,34 @@ class AuthController extends Controller
         }
     }
 
-    public function register()
+    public function register(Request $request)
     {
-        $user = User::whereEmail('aminnateghi10@gmail.com')->first();
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:6|confirmed'
+        ]);
+
+        $user = User::whereEmail($request->email)->first();
 
         if ($user) {
             abort(404);
         }
 
         return User::create([
-            'name' => 'amin',
-            'email' => 'aminnateghi10@gmail.com',
+            'name' => $request->name,
+            'email' => $request->email,
             'password' => app('hash')->make('a13801380')
+        ]);
+    }
+
+    public function checkAuth()
+    {
+        $user = auth()->user();
+
+        return response()->json([
+            'data' => $user,
+            'status' => 'status'
         ]);
     }
 }

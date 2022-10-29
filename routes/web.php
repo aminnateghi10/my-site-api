@@ -24,12 +24,13 @@ $router->group(['prefix' => 'api/v1/'], function ($router) {
 
 
         $router->post('login', ['uses' => 'AuthController@login']);
-        $router->get('register', ['uses' => 'AuthController@register']);
+        $router->post('register', ['uses' => 'AuthController@register']);
     });
 
 
     $router->group(['middleware' => ['auth']], function ($router) {
         // skills routes
+        $router->post('auth', ['uses' => 'AuthController@checkAuth']);
         $router->post('skills', ['uses' => 'SkillController@store']);
         $router->put('skills/{skill}', ['uses' => 'SkillController@update']);
         $router->delete('skills/{skill}', ['uses' => 'SkillController@delete']);

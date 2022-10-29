@@ -42,6 +42,18 @@ class AuthServiceProvider extends ServiceProvider
 
                 return $user;
             }
+
+            if ($request->cookies->has('user_token')) {
+                $user = User::where('api_token', $request->cookies->get('user_token'))->first();
+
+                if ($user === null){
+                    return response()->json(['authenticate' => false] , 401);
+                }
+
+                $request->request->add(['userid' => $user->id]);
+
+                return $user;
+            }
         });
     }
 }
