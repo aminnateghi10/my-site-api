@@ -2,6 +2,8 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
+use App\Http\Controllers\TicketController;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -20,9 +22,8 @@ $router->group(['prefix' => 'api/v1/'], function ($router) {
         $router->get('information', ['uses' => 'InformationController@index']);
         $router->get('clients', ['uses' => 'ClientController@index']);
         $router->get('experiences', ['uses' => 'ExperienceController@index']);
-        $router->get('services', ['uses' => 'ServiceController@index']);
-
-
+        $router->get('services', ['uses' => 'ServiceController@index']);    
+        $router->post('ticket',['uses'=>'TicketController@store']);
         $router->post('login', ['uses' => 'AuthController@login']);
         $router->post('register', ['uses' => 'AuthController@register']);
     });
