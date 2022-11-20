@@ -37,7 +37,7 @@ $router->group(['prefix' => 'api/v1/'], function ($router) {
 
         // information routes
         $router->post('information', ['uses' => 'InformationController@store']);
-        $router->put('information/{information}', ['uses' => 'InformationController@update']);
+        $router->put('information', ['uses' => 'InformationController@update']);
         $router->delete('information/{information}', ['uses' => 'InformationController@delete']);
 
         // clients routes

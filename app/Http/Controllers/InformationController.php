@@ -55,7 +55,7 @@ class InformationController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function update(int $information, Request $request): JsonResponse
+    public function update(Request $request): JsonResponse
     {
         foreach ($request->all() as $key => $value) {
             Information::updateOrCreate([
