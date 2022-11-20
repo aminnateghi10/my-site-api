@@ -33,7 +33,6 @@ class ServiceController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
-       //dd($request->files);
         $this->validate($request, [
             'title' => ['required'],
             'body' => ['nullable', 'string'],
