@@ -54,7 +54,6 @@ class InformationController extends Controller
      * @param int $information
      * @param Request $request
      * @return JsonResponse
-     * @throws ValidationException
      */
     public function update(int $information, Request $request): JsonResponse
     {
