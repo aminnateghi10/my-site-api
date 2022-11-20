@@ -16,7 +16,7 @@ class InformationController extends Controller
      */
     public function index(): JsonResponse
     {
-        $information = Information::all();
+        $information = Information::pluck('value', 'key');
 
         return response()->json([
             'data' => $information
@@ -58,17 +58,18 @@ class InformationController extends Controller
      */
     public function update(int $information, Request $request): JsonResponse
     {
-        $this->validate($request, [
-            'group' => ['nullable', 'string'],
-            'key' => ['required', 'string'],
-            'value' => ['nullable'],
-            'meta' => ['nullable', 'array']
-        ]);
+        foreach ($request->all() as $key => $value) {
+            Information::updateOrCreate([
+                'key' => $key,
+            ], [
+                'value' => $value
+            ]);
+        }
 
-        $status = Information::whereId($information)->update($request->only(['group', 'key', 'value', 'meta']));
+        $information = Information::pluck('value', 'key');
 
         return response()->json([
-            'status' => $status
+            'data' => $information
         ]);
     }
 

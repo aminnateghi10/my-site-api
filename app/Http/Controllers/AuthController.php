@@ -48,22 +48,24 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $this->validate($request, [
+        $data = $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required|min:6|confirmed'
         ]);
 
-        $user = User::whereEmail($request->email)->first();
+        $user = User::whereEmail($data['email'])->first();
 
         if ($user) {
-            abort(404);
+            return response()->json([
+                'message' => 'این کاربر قبلا در سیستم ثبت شده است '
+            ]);
         }
 
         return User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => app('hash')->make('a13801380')
+            'password' => app('hash')->make($data['password'])
         ]);
     }
 
