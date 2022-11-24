@@ -36,6 +36,9 @@ $router->group(['prefix' => 'api/v1/'], function ($router) {
         $router->put('skills/{skill}', ['uses' => 'SkillController@update']);
         $router->delete('skills/{skill}', ['uses' => 'SkillController@delete']);
 
+        //tickets routes
+
+        $router->get('ticket', ['uses' => 'TicketController@show']); 
         // information routes
         $router->post('information', ['uses' => 'InformationController@store']);
         $router->put('information/{information}', ['uses' => 'InformationController@update']);

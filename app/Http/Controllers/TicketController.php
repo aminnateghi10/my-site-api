@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\Ticket as ResourcesTicket;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
+use App\Http\Resources\Ticket as ResourcesTicket;
 
 class TicketController extends Controller
 {
     public function store(Request $request)
     {
-        $request->validate([
+        $this->validate($request,[
             'name'=>'required',
             'email'=>'required|email',
             'subject'=>'required',
