@@ -17,6 +17,7 @@ class Ticket extends JsonResource
         return [
             'status' => 200,
             'data' => [
+                'id' => $this->id ?? '',
                 'name' => $this->name ?? '',
                 'email' => $this->email ?? '',
                 'subject' => $this->subject ?? '',
