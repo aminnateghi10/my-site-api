@@ -86,7 +86,7 @@ class ClientController extends Controller
             $request->merge(['img' => $file->getPathname()]);
         }
 
-        $client = $client->update($request->only(['name', 'job', 'body', 'meta', 'img']));
+        $client->update($request->only(['name', 'job', 'body', 'meta', 'img']));
 
 
         return response()->json([

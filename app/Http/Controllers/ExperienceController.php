@@ -72,7 +72,7 @@ class ExperienceController extends Controller
         $status = Experience::whereId($experience)->update($request->only(['type', 'title', 'body', 'start', 'end', 'meta']));
 
         return response()->json([
-            'status' => $status
+            'status' => Experience::find($experience)
         ]);
     }
 

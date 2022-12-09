@@ -22,8 +22,8 @@ $router->group(['prefix' => 'api/v1/'], function ($router) {
         $router->get('information', ['uses' => 'InformationController@index']);
         $router->get('clients', ['uses' => 'ClientController@index']);
         $router->get('experiences', ['uses' => 'ExperienceController@index']);
-        $router->get('services', ['uses' => 'ServiceController@index']);    
-        $router->post('ticket',['uses'=>'TicketController@store']);
+        $router->get('services', ['uses' => 'ServiceController@index']);
+        $router->post('tickets', ['uses' => 'TicketController@store']);
         $router->post('login', ['uses' => 'AuthController@login']);
         $router->post('register', ['uses' => 'AuthController@register']);
     });
@@ -36,9 +36,10 @@ $router->group(['prefix' => 'api/v1/'], function ($router) {
         $router->put('skills/{skill}', ['uses' => 'SkillController@update']);
         $router->delete('skills/{skill}', ['uses' => 'SkillController@delete']);
 
-        //tickets routes
+        // ticket routes
+        $router->get('tickets', ['uses' => 'TicketController@index']);
+        $router->delete('tickets/{id}', ['uses' => 'TicketController@delete']);
 
-        $router->get('ticket', ['uses' => 'TicketController@show']); 
         // information routes
         $router->post('information', ['uses' => 'InformationController@store']);
         $router->put('information', ['uses' => 'InformationController@update']);
