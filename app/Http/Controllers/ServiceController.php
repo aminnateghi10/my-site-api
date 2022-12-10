@@ -83,7 +83,7 @@ class ServiceController extends Controller
             $request->merge(['image' => $file->getPathname()]);
         }
 
-        $service = $service->update($request->only(['title', 'body', 'meta', 'image']));
+        $service->update($request->only(['title', 'body', 'meta', 'image']));
 
 
         return response()->json([
